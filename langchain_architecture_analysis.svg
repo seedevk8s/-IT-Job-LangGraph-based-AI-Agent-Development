@@ -1,0 +1,151 @@
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="modelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="promptGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="parserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="700" fill="#f8fafc"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#headerGrad)"/>
+  <text x="450" y="38" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="bold">
+    LangChain의 핵심 아키텍처 패턴: Structured Output Processing
+  </text>
+  
+  <!-- Main Architecture Flow -->
+  <text x="50" y="90" fill="#374151" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🏗️ LangChain의 3단계 처리 파이프라인 (P.L.O Pattern)
+  </text>
+  
+  <!-- 1. Prompt Engineering Section -->
+  <rect x="50" y="110" width="250" height="180" fill="url(#promptGrad)" stroke="#06b6d4" stroke-width="2" rx="10"/>
+  <text x="70" y="135" fill="#0891b2" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    📝 PROMPT (프롬프트 엔지니어링)
+  </text>
+  <rect x="70" y="145" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="80" y="160" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Pydantic 스키마 정의</text>
+  <text x="80" y="175" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">Recipe(ingredients, steps)</text>
+  
+  <rect x="70" y="195" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="80" y="210" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Format Instructions 생성</text>
+  <text x="80" y="225" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">JSON 스키마 → 자연어 지시문</text>
+  
+  <rect x="70" y="245" width="210" height="40" fill="white" stroke="#10b981" stroke-width="2" rx="5"/>
+  <text x="80" y="260" fill="#059669" font-family="Arial, sans-serif" font-size="10" font-weight="bold">템플릿 결합 (partial)</text>
+  <text x="80" y="275" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">지시문을 프롬프트에 주입</text>
+  
+  <!-- 2. Language Model Section -->
+  <rect x="330" y="110" width="250" height="180" fill="url(#modelGrad)" stroke="#f59e0b" stroke-width="2" rx="10"/>
+  <text x="350" y="135" fill="#d97706" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    🤖 LANGUAGE MODEL (언어 모델)
+  </text>
+  <rect x="350" y="145" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="360" y="160" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">ChatOpenAI 인스턴스</text>
+  <text x="360" y="175" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">로컬 서버 + OSS 모델</text>
+  
+  <rect x="350" y="195" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="360" y="210" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">구조화된 지시문 처리</text>
+  <text x="360" y="225" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">"오무라이스" + JSON 형식 요구</text>
+  
+  <rect x="350" y="245" width="210" height="40" fill="white" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="360" y="260" fill="#d97706" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Raw JSON 응답 생성</text>
+  <text x="360" y="275" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">비구조화된 텍스트 출력</text>
+  
+  <!-- 3. Output Parser Section -->
+  <rect x="610" y="110" width="250" height="180" fill="url(#parserGrad)" stroke="#10b981" stroke-width="2" rx="10"/>
+  <text x="630" y="135" fill="#059669" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    🔄 OUTPUT PARSER (출력 파서)
+  </text>
+  <rect x="630" y="145" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="640" y="160" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">PydanticOutputParser</text>
+  <text x="640" y="175" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">타입 안전성 + 검증</text>
+  
+  <rect x="630" y="195" width="210" height="40" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="640" y="210" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">JSON → Python Object</text>
+  <text x="640" y="225" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">문자열을 구조화된 데이터로</text>
+  
+  <rect x="630" y="245" width="210" height="40" fill="white" stroke="#10b981" stroke-width="2" rx="5"/>
+  <text x="640" y="260" fill="#059669" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Recipe 객체 반환</text>
+  <text x="640" y="275" fill="#6b7280" font-family="Arial, sans-serif" font-size="9">타입 힌트 + 필드 검증</text>
+  
+  <!-- Flow Arrows -->
+  <path d="M 300 200 L 330 200" stroke="#4f46e5" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 580 200 L 610 200" stroke="#4f46e5" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Key Benefits Section -->
+  <rect x="50" y="320" width="800" height="120" fill="#fef7ff" stroke="#a855f7" stroke-width="2" rx="10"/>
+  <text x="70" y="345" fill="#7c2d92" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🎯 이 패턴의 핵심 가치 (LangChain의 철학)
+  </text>
+  
+  <rect x="70" y="360" width="240" height="65" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="80" y="378" fill="#7c2d92" font-family="Arial, sans-serif" font-size="11" font-weight="bold">타입 안전성 (Type Safety)</text>
+  <text x="80" y="395" fill="#374151" font-family="Arial, sans-serif" font-size="9">• Pydantic 스키마로 런타임 검증</text>
+  <text x="80" y="408" fill="#374151" font-family="Arial, sans-serif" font-size="9">• IDE 자동완성 및 오류 검출</text>
+  <text x="80" y="421" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 예측 가능한 데이터 구조</text>
+  
+  <rect x="330" y="360" width="240" height="65" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="340" y="378" fill="#7c2d92" font-family="Arial, sans-serif" font-size="11" font-weight="bold">관심사 분리 (Separation)</text>
+  <text x="340" y="395" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 프롬프트 설계 vs 파싱 로직</text>
+  <text x="340" y="408" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 모델 독립적인 출력 처리</text>
+  <text x="340" y="421" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 재사용 가능한 컴포넌트</text>
+  
+  <rect x="590" y="360" width="240" height="65" fill="white" stroke="#e5e7eb" rx="5"/>
+  <text x="600" y="378" fill="#7c2d92" font-family="Arial, sans-serif" font-size="11" font-weight="bold">확장성 (Scalability)</text>
+  <text x="600" y="395" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 체인 조합으로 복잡한 워크플로우</text>
+  <text x="600" y="408" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 다양한 출력 형식 지원</text>
+  <text x="600" y="421" fill="#374151" font-family="Arial, sans-serif" font-size="9">• 에러 핸들링 및 재시도</text>
+  
+  <!-- Comparison Section -->
+  <rect x="50" y="460" width="800" height="140" fill="#f0fdf4" stroke="#22c55e" stroke-width="2" rx="10"/>
+  <text x="70" y="485" fill="#16a34a" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    🔄 전통적 방식 vs LangChain 방식
+  </text>
+  
+  <!-- Traditional Way -->
+  <rect x="70" y="500" width="360" height="85" fill="white" stroke="#ef4444" stroke-width="1" rx="5"/>
+  <text x="80" y="518" fill="#dc2626" font-family="Arial, sans-serif" font-size="12" font-weight="bold">❌ 전통적 방식 (Raw String Processing)</text>
+  <text x="80" y="535" fill="#374151" font-family="Arial, sans-serif" font-size="10">1. 수동으로 프롬프트 작성</text>
+  <text x="80" y="550" fill="#374151" font-family="Arial, sans-serif" font-size="10">2. 모델 호출 후 문자열 응답 받음</text>
+  <text x="80" y="565" fill="#374151" font-family="Arial, sans-serif" font-size="10">3. 정규식이나 split()으로 파싱</text>
+  <text x="80" y="580" fill="#dc2626" font-family="Arial, sans-serif" font-size="10">→ 에러 prone, 유지보수 어려움</text>
+  
+  <!-- LangChain Way -->
+  <rect x="450" y="500" width="360" height="85" fill="white" stroke="#22c55e" stroke-width="2" rx="5"/>
+  <text x="460" y="518" fill="#16a34a" font-family="Arial, sans-serif" font-size="12" font-weight="bold">✅ LangChain 방식 (Structured Processing)</text>
+  <text x="460" y="535" fill="#374151" font-family="Arial, sans-serif" font-size="10">1. 스키마 기반 프롬프트 자동 생성</text>
+  <text x="460" y="550" fill="#374151" font-family="Arial, sans-serif" font-size="10">2. 모델이 구조화된 형식으로 응답</text>
+  <text x="460" y="565" fill="#374151" font-family="Arial, sans-serif" font-size="10">3. 타입 안전한 객체로 자동 변환</text>
+  <text x="460" y="580" fill="#16a34a" font-family="Arial, sans-serif" font-size="10">→ 견고하고 확장 가능한 시스템</text>
+  
+  <!-- Bottom Insight -->
+  <rect x="50" y="620" width="800" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="10"/>
+  <text x="70" y="645" fill="#ea580c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    💡 핵심 통찰: LangChain은 "프롬프트 → 모델 → 파서"의 표준화된 파이프라인을 제공하여
+  </text>
+  <text x="70" y="665" fill="#ea580c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    AI 애플리케이션 개발을 소프트웨어 엔지니어링의 모범 사례로 끌어올립니다.
+  </text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4f46e5"/>
+    </marker>
+  </defs>
+</svg>
